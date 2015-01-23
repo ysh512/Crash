@@ -75,6 +75,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	public static final String TAG = "Container";
 	//-----------------UI------------------------
 	
+	public TextView tv_test;
 	private ViewPager viewPager;
 	private ImageButton im_call;
 	private ImageButton im_record;
@@ -187,6 +188,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	
 	private void initView() {
 		
+		tv_test.setText("");
 		this.imageCache = new HashMap<String, SoftReference<Bitmap>>();  
 		
 		this.tv_title.setText(R.string.company_name);

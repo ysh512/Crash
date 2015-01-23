@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#8F8F8F">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp">
+    
+    <TextView
+        android:id="@+id/tv_calling_count"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content" 
+        android:textSize="16sp"
+        android:layout_alignParentRight="true"
+        android:textColor="#ffffff"
+        android:layout_marginRight="10dp"
+        android:text="0秒">
+        
+    </TextView>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_compose_default_avatar" />
+
+    <TextView
+        android:id="@+id/tv_calling_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/imageView1"
+        android:gravity="center"
+        android:text="13262878009"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_calling_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_calling_name"
+        android:layout_centerVertical="true"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:text="13262878009" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_calling_number"
+        android:layout_below="@+id/tv_calling_number"
+        android:text="即将接通..."
+        android:layout_marginTop="5dp"
+        android:textSize="16sp"
+        android:textColor="#ffffff" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_calling_ad"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3.3"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="fitXY"
+        android:src="@drawable/ad20" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:background="#ffffff"
+       >
+    <Button
+            android:id="@+id/btn_calling_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/shape_rectangle3"
+            android:text="返回" />
+
+       <ImageView
+            android:id="@+id/iv_c_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/btn_calling_cancel"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="15dp"
+            android:src="@drawable/d1" />
+       
+</RelativeLayout>
+
+</LinearLayout>

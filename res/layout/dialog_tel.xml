@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="220dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    android:background="#F2F2F2">
+
+    <Button
+        android:id="@+id/bt_dt_tel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/re_tel" 
+        android:background="@drawable/shape_rectangle2"/>
+
+    <Button
+        android:id="@+id/bt_dt_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/cancel"
+        android:background="@drawable/shape_rectangle2" />
+
+</LinearLayout>

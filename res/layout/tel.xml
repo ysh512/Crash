@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+ <android.support.v4.view.ViewPager
+        android:id="@+id/vp_t_ad"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="5"
+        android:background="#00000000"
+        android:flipInterval="30"
+        android:paddingLeft="1dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:paddingRight="1dp"
+        android:persistentDrawingCache="animation" />
+   <LinearLayout 
+        android:id="@+id/ll_tel_numpad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#B5B6B5"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="0.5dp"
+             
+            >
+            <ImageButton
+                android:id="@+id/ib_num_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/num_19"
+                android:tag="1">
+                </ImageButton>
+                
+            <ImageButton
+                android:id="@+id/ib_num_2"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/num_29"
+                android:tag="2">
+                </ImageButton>
+                
+            <ImageButton
+                android:id="@+id/ib_num_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/num_39"
+                android:tag="3">
+                </ImageButton>
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="0.5dp"
+            >
+            <ImageButton
+                android:id="@+id/ib_num_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/num_49"
+                android:tag="4">
+                </ImageButton>
+                
+            <ImageButton
+                android:id="@+id/ib_num_5"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/num_59"
+                android:tag="5">
+                </ImageButton>
+                
+            <ImageButton
+                android:id="@+id/ib_num_6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/num_69"
+                android:tag="6">
+                </ImageButton>
+            
+            
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="0.5dp"
+            >
+            
+            <ImageButton
+                android:id="@+id/ib_num_7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/num_79"
+                android:tag="7">
+                </ImageButton>
+                
+            <ImageButton
+                android:id="@+id/ib_num_8"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/num_89"
+                android:tag="8">
+                </ImageButton>
+                
+            <ImageButton
+                android:id="@+id/ib_num_9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/num_99"
+                android:tag="9">
+                </ImageButton>
+            
+            
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="0.5dp"
+            android:layout_marginTop="0.5dp"
+            >
+            
+            <ImageButton
+                android:id="@+id/ib_num_x"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/num_x9"
+                android:tag="*">
+                </ImageButton>
+                
+            <ImageButton
+                android:id="@+id/ib_num_0"
+                android:layout_marginLeft="0.5dp"
+                android:layout_marginRight="0.5dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/num_09"
+                android:tag="0">
+                </ImageButton>
+                
+            <ImageButton
+                android:id="@+id/ib_num_j"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/num_j9"
+                android:tag="#">
+                </ImageButton>
+            
+            </LinearLayout>
+       
+    </LinearLayout>
+    
+    
+
+</LinearLayout>

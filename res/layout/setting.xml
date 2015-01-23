@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        >
+
+        <ToggleButton
+            android:id="@+id/tb_s_autoanswer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textOn=""
+            android:textOff=""
+            android:layout_marginRight="10dp"
+            android:background="@drawable/switch_btn" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:textSize="16sp"
+            android:text="@string/auto_answer" />
+
+        </RelativeLayout>
+        
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f2f2f2"></RelativeLayout>
+        
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        >
+
+        <ToggleButton
+            android:id="@+id/tb_s_backmusic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textOn=""
+            android:textOff=""
+            android:layout_marginRight="10dp"
+            android:background="@drawable/switch_btn" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:textSize="16sp"
+            android:text="@string/background_music" />
+
+        </RelativeLayout>
+      
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f2f2f2"></RelativeLayout>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        >
+
+        <ToggleButton
+            android:id="@+id/tb_s_extcall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textOn=""
+            android:textOff=""
+            android:layout_marginRight="10dp"
+            android:background="@drawable/switch_btn" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:textSize="16sp"
+            android:text="@string/external_call" />
+
+        </RelativeLayout>
+    <Button
+        android:id="@+id/bt_s_logout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="@string/login_out"
+        android:background="#13A3D6"></Button>"
+
+</LinearLayout>

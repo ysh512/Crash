@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/iv_ir_call_type"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/call_coming" />
+
+    <TextView
+        android:id="@+id/tv_ir_name"
+        android:layout_marginTop="6dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_ir_phonenum"
+        android:layout_alignParentTop="true"
+        android:textSize="16sp"
+        android:textColor="#336598"
+        android:text="Jack" />
+
+    <TextView
+        android:id="@+id/tv_ir_phonenum"
+        android:layout_marginBottom="6dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/iv_ir_call_type"
+        android:textSize="16sp"
+        android:text="13280080012" />
+
+    <ImageView
+        android:id="@+id/iv_ir_callphone"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/telephone" />
+    <ImageView
+        android:layout_width="0.5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@+id/iv_ir_callphone"
+        android:background="#dbdbdb"/>
+    
+    
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentBottom="true"
+        android:background="#dbdbdb"
+        />
+
+    <TextView
+        android:id="@+id/tv_ir_calldate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/iv_ir_callphone"
+        android:text="09-16 11:30"
+        android:layout_marginRight="5dp"
+        android:textSize="14sp" />
+
+</RelativeLayout>

@@ -55,6 +55,10 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewGroup.MarginLayoutParams;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -86,7 +90,6 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	
 	//page call
 	private LinearLayout ll_numPad;
-	private ViewPager vp_t_ad;
 	private ImageButton num_1;
 	private ImageButton num_2;
 	private ImageButton num_3;
@@ -129,12 +132,16 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	
 	
 	//menu page
-	private ViewPager vp_menu_ad;
-	private ImageView[] mImageViews; // 装ImageView数组
-	private int[] imgIdArray; // 图片资源id
-	private int menuAdIndex;
+//	private ViewPager vp_menu_ad;
+//	private ImageView[] mImageViews; // 装ImageView数组
+//	private int[] imgIdArray; // 图片资源id
+//	private int menuAdIndex;
 	private GridView gv_m;
 	
+	
+	private WebView wv_menu_ad;
+	
+	private WebView wv_t_ad;
 	
 	/**
 	 * 上次第一个可见元素，用于滚动时记录标识。
@@ -156,6 +163,8 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 //	private SharedPreferences mySharedPreferences;
 	private HashMap<String, SoftReference<Bitmap>> imageCache;
 	
+	private String phone;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -164,7 +173,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 				Activity.MODE_PRIVATE); 
 				// 使用getString方法获得value，注意第2个参数是value的默认值 
 				String login =sharedPreferences.getString("login", ""); 
-				String phone =sharedPreferences.getString("phone", ""); 
+				phone =sharedPreferences.getString("phone", ""); 
 		if(!login.equals("true"))
 		{
 			Intent it = new Intent(Container.this,Login.class);
@@ -188,7 +197,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	
 	private void initView() {
 		
-		tv_test.setText("");
+//		tv_test.setText("");
 		this.imageCache = new HashMap<String, SoftReference<Bitmap>>();  
 		
 		this.tv_title.setText(R.string.company_name);
@@ -240,16 +249,72 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	
 	private void initTelView(View telView) {
 		
-		ll_numPad = (LinearLayout)telView.findViewById(R.id.ll_tel_numpad);
-		vp_t_ad = (ViewPager)telView.findViewById(R.id.vp_t_ad);
-		this.mImageViews = new ImageView[3];
-		int resIds[]= {R.drawable.ad1,R.drawable.ad2,R.drawable.ad3,R.drawable.ad20};
-		for(int i=0;i<mImageViews.length;i++)
+		wv_t_ad = (WebView)telView.findViewById(R.id.wv_t_ad);
+		wv_t_ad.getSettings().setJavaScriptEnabled(true);
+		wv_t_ad.setVerticalScrollBarEnabled(false);
+		wv_t_ad.setHorizontalScrollBarEnabled(false);
+
+		wv_t_ad.setWebChromeClient(new WebChromeClient() {
+
+			@Override
+			public void onProgressChanged(WebView view, int newProgress) {
+				super.onProgressChanged(view, newProgress);
+			}
+
+		});
+		wv_t_ad.setWebViewClient(new WebViewClient() {
+			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				wv_t_ad.loadUrl(url);
+				return true;
+			}
+
+			public void onReceivedSslError(WebView view,
+					SslErrorHandler handler, android.net.http.SslError error) {
+				handler.proceed();
+			}
+
+			public void onPageStarted(WebView view, String url, Bitmap favicon) {
+				super.onPageStarted(view, url, favicon);
+				showProgress();
+			}
+
+			private void showProgress() {
+//				mLoadingView.setVisibility(View.VISIBLE);
+			}
+
+			private void dismissProgress() {
+//				mLoadingView.setVisibility(View.GONE);
+			}
+
+			public void onPageFinished(WebView view, String url) {
+				super.onPageFinished(view, url);
+				dismissProgress();
+			}
+		});
+		
+		if(phone!=null)
 		{
-			mImageViews[i] = new ImageView(this);
-			mImageViews[i].setImageResource(resIds[i]);
+			String url = "http://121.40.100.250:99/CallReqRet.php?UserID="+phone+"&CallTo=more&Wap=html";
+			wv_t_ad.loadUrl(url);
 		}
-		vp_t_ad.setAdapter(new MenuAdAdapter(mImageViews));
+		else
+		{
+			wv_t_ad.loadUrl("http://121.40.100.250:99/CallReqRet.php?UserID=13262878009&CallTo=more&Wap=html");
+		}
+		
+		
+		
+		
+		ll_numPad = (LinearLayout)telView.findViewById(R.id.ll_tel_numpad);
+//		vp_t_ad = (ViewPager)telView.findViewById(R.id.vp_t_ad);
+//		this.mImageViews = new ImageView[3];
+//		int resIds[]= {R.drawable.ad1,R.drawable.ad2,R.drawable.ad3,R.drawable.ad20};
+//		for(int i=0;i<mImageViews.length;i++)
+//		{
+//			mImageViews[i] = new ImageView(this);
+//			mImageViews[i].setImageResource(resIds[i]);
+//		}
+//		vp_t_ad.setAdapter(new MenuAdAdapter(mImageViews));
 		
 		ArrayList<ImageView> ivList = new ArrayList<ImageView>();
 		for(int i=0;;i++)
@@ -271,19 +336,19 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 			iv.setScaleType(ScaleType.FIT_XY);
 			ivList.add(iv);
 		}
-		if(ivList.size()>0)
-		{
-			vp_t_ad.setAdapter(new BitmapLoadAdapter(ivList));
-		}
-		vp_t_ad.setCurrentItem(1);
-		if(ivList.size()>0)
-		{
-			this.scrollPageViewer(vp_t_ad, ivList.size());
-		}
-		else
-		{
-			this.scrollPageViewer(vp_t_ad, mImageViews.length);
-		}
+//		if(ivList.size()>0)
+//		{
+//			vp_t_ad.setAdapter(new BitmapLoadAdapter(ivList));
+//		}
+//		vp_t_ad.setCurrentItem(1);
+//		if(ivList.size()>0)
+//		{
+//			this.scrollPageViewer(vp_t_ad, ivList.size());
+//		}
+//		else
+//		{
+//			this.scrollPageViewer(vp_t_ad, mImageViews.length);
+//		}
 		
 		
 		
@@ -446,17 +511,63 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	}
 	
 	private void initMenuview(View menuView) {
-		vp_menu_ad = (ViewPager) menuView.findViewById(R.id.vp_m_ad); 
-		this.mImageViews = new ImageView[3];
-		int resIds[]= {R.drawable.ad30,R.drawable.ad32,R.drawable.ad20};
-		for(int i=0;i<mImageViews.length;i++)
-		{
-			mImageViews[i] = new ImageView(this);
-			mImageViews[i].setImageResource(resIds[i]);
-		}
-		vp_menu_ad.setAdapter(new MenuAdAdapter(mImageViews));
 		
-//		menuAdIndex = 0;
+		wv_menu_ad = (WebView)menuView.findViewById(R.id.menu_wv);
+		wv_menu_ad.getSettings().setJavaScriptEnabled(true);
+		wv_menu_ad.setHorizontalScrollBarEnabled(false);
+		wv_menu_ad.setVerticalScrollBarEnabled(false);
+		
+		wv_menu_ad.setWebChromeClient(new WebChromeClient() {
+
+			@Override
+			public void onProgressChanged(WebView view, int newProgress) {
+				super.onProgressChanged(view, newProgress);
+			}
+
+		});
+		wv_menu_ad.setWebViewClient(new WebViewClient() {
+			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				wv_menu_ad.loadUrl(url);
+				return true;
+			}
+
+			public void onReceivedSslError(WebView view,
+					SslErrorHandler handler, android.net.http.SslError error) {
+				handler.proceed();
+			}
+
+			public void onPageStarted(WebView view, String url, Bitmap favicon) {
+				super.onPageStarted(view, url, favicon);
+				showProgress();
+			}
+
+			private void showProgress() {
+//				mLoadingView.setVisibility(View.VISIBLE);
+			}
+
+			private void dismissProgress() {
+//				mLoadingView.setVisibility(View.GONE);
+			}
+
+			public void onPageFinished(WebView view, String url) {
+				super.onPageFinished(view, url);
+				dismissProgress();
+			}
+		});
+		
+		if(phone!=null)
+		{
+			String url = "http://121.40.100.250:99/CallReqRet.php?UserID="+phone+"&CallTo=more&Wap=html";
+			wv_menu_ad.loadUrl(url);
+		}
+		else
+		{
+			wv_menu_ad.loadUrl("http://121.40.100.250:99/CallReqRet.php?UserID=13262878009&CallTo=more&Wap=html");
+		}
+		
+//		wv_menu_ad.loadUrl("http://121.40.100.250:99/CallReqRet.php?UserID=13262878009&CallTo=more&Wap=html");
+			
+		
 		
 		ArrayList<ImageView> ivList = new ArrayList<ImageView>();
 		for(int i=0;;i++)
@@ -479,20 +590,8 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 			iv.setScaleType(ScaleType.FIT_XY);
 			iv.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
 		}
-		if(ivList.size()>0)
-		{
-			vp_menu_ad.setAdapter(new BitmapLoadAdapter(ivList));
-		}
-		vp_menu_ad.setCurrentItem(1);
-		if(ivList.size()>0)
-		{
-			this.scrollPageViewer(vp_menu_ad, ivList.size());
-		}
-		else
-		{
-			this.scrollPageViewer(vp_menu_ad,mImageViews.length );
-		}
-			
+
+//			
 		gv_m = (GridView)menuView.findViewById(R.id.gv_m);
 		int strResId[] = {R.string.gd_1,R.string.gd_2,R.string.gd_3,
 				R.string.gd_4,R.string.gd_5,R.string.gd_6,R.string.gd_7,R.string.gd_8};
@@ -503,17 +602,6 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		gv_m.setAdapter(new MenuGridviewAdapter(Container.this,strResId,picResId));
 		
 		gv_m.setOnItemClickListener(this);
-		
-		//set scroll ad string
-		MarqueeButton mb= (MarqueeButton)menuView.findViewById(R.id.marquee_button);
-		
-//		TextView tv_ad = (TextView)menuView.findViewById(R.id.tv_m_ad);
-		SharedPreferences mySharedPreferences = this.getSharedPreferences(Variable.SHARE_PRE_NAME, Activity.MODE_PRIVATE);
-		if(mySharedPreferences.contains(Variable.FILED_MARQUEEN_STR))
-		{
-			mb.setText(mySharedPreferences.getString(Variable.FILED_MARQUEEN_STR, ""));
-		}
-
 		
 		
 	}
@@ -952,24 +1040,24 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 		
 	}
 	
-	private void scrollPageViewer(final ViewPager v, final int pages)
-	{
-		new Handler() { 
-			public void handleMessage(Message msg) {
-				super.handleMessage(msg);
-		    
-			    int current = vp_t_ad.getCurrentItem();
-			    v.setCurrentItem((current+1)%pages);
-			    
-//	            Log.d(TAG, "change ad index:"+menuAdIndex);
-	            if(m_running)
-	            {
-	            	sendEmptyMessageDelayed(0, 3000);
-	            }
-	            
-			}
-		}.sendEmptyMessageDelayed(0, 3000);	
-	}
+//	private void scrollPageViewer(final ViewPager v, final int pages)
+//	{
+//		new Handler() { 
+//			public void handleMessage(Message msg) {
+//				super.handleMessage(msg);
+//		    
+//			    int current = vp_t_ad.getCurrentItem();
+//			    v.setCurrentItem((current+1)%pages);
+//			    
+////	            Log.d(TAG, "change ad index:"+menuAdIndex);
+//	            if(m_running)
+//	            {
+//	            	sendEmptyMessageDelayed(0, 3000);
+//	            }
+//	            
+//			}
+//		}.sendEmptyMessageDelayed(0, 3000);	
+//	}
 
 
 	@Override

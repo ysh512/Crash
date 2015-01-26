@@ -58,22 +58,7 @@ public class QueryInfo implements Runnable{
 				+ phone + "&CallTo=dialpan&Wap=json";
 
 		String result = getQueryResult(ad_pic_url);
-		// HttpClient client = new DefaultHttpClient();
-		// HttpGet get = new
-		// HttpGet("http://121.40.100.250:99/CallReqRet.php?UserID="+phone+"&CallTo=dialpan&Wap=json");
-		// HttpResponse response= null;
-		// BufferedReader in = null;
-		// try {
-		// response = client.execute(get);
-		// } catch (IOException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-
 		
-
-		// if (null!=response && response.getStatusLine().getStatusCode() ==
-		// HttpStatus.SC_OK) {
 		try {
 			// String result = EntityUtils.toString(response.getEntity());
 			JSONTokener json = new JSONTokener(result);
@@ -123,11 +108,11 @@ public class QueryInfo implements Runnable{
 
 		// }
 
-		updateAdString();
+//		updateAdString();
 		
 		updateCallingAdPic();
 		
-		updateMenuAdPic();
+//		updateMenuAdPic();
 		
 	}
 	

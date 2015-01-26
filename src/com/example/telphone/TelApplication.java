@@ -31,8 +31,6 @@ public class TelApplication extends Application{
 	private static Context appContext;
 	private static ArrayList<Activity> mList = new ArrayList<Activity>();
 	
-	 private final static String ALBUM_PATH  
-     = Environment.getExternalStorageDirectory() + "/download_test/";
 	 
 	 public static String phone;
 	 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">灵犀通讯</string>
+    <string name="app_name">中州E信</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     
-    <string name="company_name">灵犀通讯</string>
+    <string name="company_name">中州E信通讯</string>
     
     <string name="gd_1">充值</string>
     <string name="gd_2">公司主页</string>

@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;  
 import java.io.PrintWriter;  
 import java.io.StringWriter;  
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;  
 import java.lang.Thread.UncaughtExceptionHandler;  
 import java.lang.reflect.Field;  
@@ -218,36 +217,35 @@ public class CrashHandler implements UncaughtExceptionHandler {
         return null;  
     }  
     
-    private void uploadCrashFile(final String path,final String fileName)
-    {
-    	new Thread(new Runnable(){
+	private void uploadCrashFile(final String path, final String fileName) {
+		new Thread(new Runnable() {
 
 			@Override
 			public void run() {
-				try
-				{
-				HttpClient httpClient = new DefaultHttpClient();
-				HttpContext localContext = new BasicHttpContext();
-				HttpPost httpPost = new HttpPost("http://121.40.100.250:99/CallReqRet.php");
-				MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
-			
-				entity.addPart("callTo", new FileBody( new File(path+"/"+fileName)));
-				
-				httpPost.setEntity(entity);
-				
-				HttpResponse httpResponse = httpClient.execute(httpPost, localContext);
-				if(httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK)
-				{
-					Log.d(TAG,"update success");
-				}
-				}
-				catch(Exception e)
-				{
-					Log.d(TAG,e.getLocalizedMessage());
+				try {
+					HttpClient httpClient = new DefaultHttpClient();
+					HttpContext localContext = new BasicHttpContext();
+					HttpPost httpPost = new HttpPost(
+							"http://121.40.100.250:99/CallReqRet.php");
+					MultipartEntity entity = new MultipartEntity(
+							HttpMultipartMode.BROWSER_COMPATIBLE);
+
+					entity.addPart("file", new FileBody(new File(path + "/"
+							+ fileName)));
+					entity.addPart("callTo", new StringBody(fileName));
+					httpPost.setEntity(entity);
+
+					HttpResponse httpResponse = httpClient.execute(httpPost,
+							localContext);
+					if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+						Log.d(TAG, "update success");
+					}
+				} catch (Exception e) {
+					Log.d(TAG, e.getLocalizedMessage());
 				}
 			}
-    		
-    	}).start();
-    }
+
+		}).start();
+	}
     
 }  

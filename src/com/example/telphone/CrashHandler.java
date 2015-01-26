@@ -24,8 +24,10 @@ import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
+import org.apache.http.util.EntityUtils;
   
 import android.content.Context;  
+import android.content.Entity;
 import android.content.pm.PackageInfo;  
 import android.content.pm.PackageManager;  
 import android.content.pm.PackageManager.NameNotFoundException;  
@@ -196,7 +198,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
         try {  
             long timestamp = System.currentTimeMillis();  
             String time = formatter.format(new Date());  
-            String fileName = "crash-" + time + "-" + timestamp + ".log";  
+            String fileName = "crash-" + time + "-" + timestamp + ".txt";  
             String path = "/sdcard/crash/";  
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {  
                 
@@ -232,13 +234,14 @@ public class CrashHandler implements UncaughtExceptionHandler {
 
 					entity.addPart("file", new FileBody(new File(path + "/"
 							+ fileName)));
-					entity.addPart("callTo", new StringBody(fileName));
+					entity.addPart("callTo", new StringBody("file"));
 					httpPost.setEntity(entity);
 
 					HttpResponse httpResponse = httpClient.execute(httpPost,
 							localContext);
 					if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 						Log.d(TAG, "update success");
+						Log.d(TAG,EntityUtils.toString(httpResponse.getEntity()));
 					}
 				} catch (Exception e) {
 					Log.d(TAG, e.getLocalizedMessage());

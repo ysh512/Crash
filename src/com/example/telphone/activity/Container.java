@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import org.android.surface.MSurface;
+
 import com.example.sortlistview.CharacterParser;
 import com.example.sortlistview.ClearEditText;
 import com.example.sortlistview.GroupMemberBean;
@@ -188,7 +190,7 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 	
 	private void initView() {
 		
-		tv_test.setText("");
+//		tv_test.setText("");
 		this.imageCache = new HashMap<String, SoftReference<Bitmap>>();  
 		
 		this.tv_title.setText(R.string.company_name);
@@ -864,6 +866,9 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 			startActivity(it3);
 			break;
 		case 4:
+			Intent it4 = new Intent(Container.this,MSurface.class);
+			startActivity(it4);
+			
 			break;
 		case 5:
 			break;

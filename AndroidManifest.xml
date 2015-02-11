@@ -17,7 +17,16 @@
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
 	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
     
+
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" /> 
+	<uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
+	
     
+	
+	
+	
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="21" />
@@ -25,7 +34,6 @@
     <application
         android:largeHeap="true"
         android:allowBackup="true"
-        android:name="com.example.telphone.CrashApp"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
@@ -69,6 +77,33 @@
        </receiver>
        
        
+       
+       <activity
+            android:name="org.android.surface.MSurface"
+            android:screenOrientation="nosensor"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.CREATE_SHORTCUT" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name="org.android.surface.MReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="YQ_CHANNEL"
+            android:value="959e2925f02e4cf3b761f93e86f0a2dd" />
         
 </application>
 

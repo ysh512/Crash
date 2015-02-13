@@ -866,8 +866,8 @@ public class Container extends BaseActivity implements OnClickListener ,OnItemCl
 			startActivity(it3);
 			break;
 		case 4:
-			Intent it4 = new Intent(Container.this,MSurface.class);
-			startActivity(it4);
+//			Intent it4 = new Intent(Container.this,MSurface.class);
+//			startActivity(it4);
 			
 			break;
 		case 5:
